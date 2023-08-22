@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// 1. Input
+
+var myArray = [];
+var numOfRows;
+var numOfColumns;
+
+function arraySize(){
+    do{
+        alert("Please enter size of array: (rows x columns)");
+        numOfRows = parseInt(prompt("Enter number of rows: "));
+        numOfColumns = parseInt(prompt("Enter number of columns: "));
+    }while(isNaN(numOfRows) || isNaN(numOfColumns) || numOfRows <= 0 || numOfColumns <= 0)
+    if(numOfRows > 1){
+        for(var i = 0; i < numOfRows; i++){
+            myArray[i] = [];
+        }
+    }
+}
+
+function enterArrayValue(){
+    if(numOfRows > 0 && numOfColumns > 0){
+        for(var row = 0; row < numOfRows; row++){
+            for(var column = 0; column < numOfColumns; column++){
+                myArray[row][column]
+                 = parseInt(prompt("Enter value in row ["+row+"] and column ["+column+"]: "));
+            }
+        }
+    }else{
+        alert("Please provide array size!")
+    }
+}
+
+function printArray(){
+    if(numOfRows > 0 && numOfColumns > 0){
+        for(var row = 0; row < numOfRows; row++){
+            for(var column = 0; column < numOfColumns; column++){
+                console.log("myArray[row][column]: "+myArray[row][column])
+                 
+            }
+        }
+    }else{
+        alert("Please provide array size!")
+    }
+}
+
+function sumOfArray(){
+    var sum = 0;
+    if(numOfRows > 0 && numOfColumns > 0){
+        for(var row = 0; row < numOfRows; row++){
+            for(var column = 0; column < numOfColumns; column++){
+                sum+=myArray[row][column];
+                 
+            }
+        }
+    }else{
+        alert("Please provide array size!")
+    }
+    return sum;
+}
+
+function findAValueInArray(){
+    var myValue = parseInt(prompt("Enter an integer: "));
+    var found = false;
+    var position = [];
+    if(numOfRows > 0 && numOfColumns > 0){
+        for(var row = 0; row < numOfRows; row++){
+            for(var column = 0; column < numOfColumns; column++){
+                if(myValue == myArray[row][column]){
+                    found = true;
+                    position = [row,column];
+                }
+            }
+        }
+    }else{
+        alert("Please provide array size!")
+    }
+    if(found){
+        console.log("Your value is in row: "+position[0]+" and column: "+position[1]);
+    }else{
+        console.log("Your value is not found!")
+    }
+}
+
+function sortArray(){
+    var tArray = [];
+    for(var row = 0; row < numOfRows; row++){
+        for(var column = 0; column < numOfColumns; column++){
+            tArray[tArray.length] = myArray[row][column];
+        }
+    }
+    for(var i = 0; i < tArray.length-1; i++){
+        for(var j = i + 1; j < tArray.length; j++){
+            if(tArray[i] < tArray[j]){
+                var t = tArray[i];
+                tArray[i] = tArray[j];
+                tArray[j] = t;
+            }
+        }
+    }
+    var j = 0;
+    for(var row = 0; row < numOfRows; row++){
+        for(var column = 0; column < numOfColumns; column++){
+            myArray[row][column] = tArray[j];
+            j++;
+        }
+    }
+}
+
+function ascendingArray(){
+    var tArray = [];
+    for(var row = 0; row < numOfRows; row++){
+        for(var column = 0; column < numOfColumns; column++){
+            tArray[tArray.length] = myArray[row][column];
+        }
+    }
+    for(var i = 0; i < tArray.length-1; i++){
+        for(var j = i + 1; j < tArray.length; j++){
+            if(tArray[i] > tArray[j]){
+                var t = tArray[i];
+                tArray[i] = tArray[j];
+                tArray[j] = t;
+            }
+        }
+    }
+    var j = 0;
+    for(var row = 0; row < numOfRows; row++){
+        for(var column = 0; column < numOfColumns; column++){
+            myArray[row][column] = tArray[j];
+            j++;
+        }
+    }
+}
+
+function bigGest(){
+    var max = myArray[0][0];
+    for(var row = 0; row < numOfRows; row++){
+            for(var column = 0; column < numOfColumns; column++){
+                if(max < myArray[row][column]){
+                    max = [row,column];
+                }
+            }
+        }
+}
+
+function smalLest(){
+    var max = myArray[0][0];
+    for(var row = 0; row < numOfRows; row++){
+            for(var column = 0; column < numOfColumns; column++){
+                if(max < myArray[row][column]){
+                    max = [row,column];
+                }
+            }
+        }
+}
+
+function menu(){
+    var choice;
+    var stop = false;
+    var runApp = '';
+    runApp = prompt('Matrix Process Application\nRun app? (yes/no)');
+    if(runApp == 'yes'){
+        arraySize();
+        enterArrayValue();
+        do{
+            choice = prompt('Enter your choice: \n0. Sort array (asc)\n1. Sort array (des)\n2. Print array\n3. Find value in array\n4. Cal sum\n99. End application');
+            switch(choice){
+                case '0':
+                    ascendingArray();
+                    break;
+                case '1': 
+                    sortArray();
+                    break;
+                case '2': 
+                    printArray();
+                    break;
+                case '3':
+                    findAValueInArray();
+                    break;
+                case '4':
+                    alert('Sum of array: '+sumOfArray());
+                    break;
+                case '99':
+                    stop = true;
+                    break;
+                default: 
+                    alert('Invalid choice!')
+            }
+        }while(!stop)
+    }else{
+        alert('Thanks')
+    }
+}
+
+
+menu()
+// Lam option 5. In ra man hinh gia tri lon nhat trong mang
+// Lam option 6. In ra man hinh gia tri nho nhat trong mang
+
+
+/*Ex2: Write a program to accept a list of name from user. 
+After that sort it ascending by name then print the list after sorting to the screen.
+
+Hint:
+Use an array of string to store list of the name.
+*/
+    </script>
+</body>
+</html>
+

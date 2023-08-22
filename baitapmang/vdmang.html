@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function main(){
+            const input =  prompt("Nhập vào dẫy số nguyên, ngăn cách bằng dấu phẩy",0);
+            const numbers = input.split(" ");
+
+            let soAm = [];
+            let soDuong = [];
+
+            for(let i=0; i < numbers.length; i++){
+                if(numbers[i]<0){
+                    soAm.push(numbers[i]);
+                }else{
+                    soDuong.push(numbers[i]);
+                }
+            }
+
+            if(soAm.length>0){
+                console.log({soAm});
+            }else{
+                console.log('số âm: Not Found')
+            }
+
+            if(soDuong.length>0){
+                console.log({soDuong});
+            }else{
+                console.log('số dương: Not Found')
+            }
+        }
+        main();
+    </script>
+</script>
+</body>
+</html>
